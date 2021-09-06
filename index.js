@@ -7,7 +7,8 @@ console.log('Bem vindo ao Bot conversor 🤖💰');
 
 
 async function robo() {
-  const browser = await puppeteer.launch({ headless: true });
+  const browser = await puppeteer.launch({headless: true, args: ["--no-sandbox",
+  "--disable-setuid-sandbox"] });
   const page = await browser.newPage();
   const linguaBase = readlineSync.question('Informe uma lingua base: ') || 'português';
   const linguaFinal = readlineSync.question('Informe uma lingua desejada:') || 'inglês';
@@ -18,13 +19,12 @@ async function robo() {
 
 
 
-  const resultado = await page.evaluate(() => {
+ const resultado = await page.evaluate(() => {
     document.getElementsByClassName('textarea').value = "Esse eh um valor de teste"
     return document.querySelector('.Y2IQFc').value;
   });
-
-  console.log(`${resultado}`)
-  await browser.close();
+  console.log(resultado)
+   await browser.close();
 }
 
 robo()
