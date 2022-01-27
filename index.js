@@ -1,5 +1,5 @@
-const puppeteer = require('puppeteer');
-const readlineSync = require('readline-sync');
+import puppeteer from 'puppeteer'
+import readlineSync from 'readline-sync'
 
 
 console.log('Bem vindo ao Bot conversor 🤖💰');
@@ -7,8 +7,11 @@ console.log('Bem vindo ao Bot conversor 🤖💰');
 
 
 async function robo() {
-  const browser = await puppeteer.launch({headless: true, args: ["--no-sandbox",
-  "--disable-setuid-sandbox"] });
+  const browser = await puppeteer.launch({
+    headless: true, 
+    args: ["--no-sandbox",
+           "--disable-setuid-sandbox"] 
+   });
   const page = await browser.newPage();
   const linguaBase = readlineSync.question('Informe uma lingua base: ') || 'português';
   const linguaFinal = readlineSync.question('Informe uma lingua desejada:') || 'inglês';
