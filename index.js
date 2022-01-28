@@ -20,7 +20,7 @@ async function robo() {
 
 
  const resultado = await page.evaluate(() => {
-    document.getElementById('tw-source').textContent = "Esse é um valor de teste"
+    document.getElementById('tw-source').innerText = 'teste'
     return document.querySelector('#tw-target').textContent;
   });
   console.log(resultado)
