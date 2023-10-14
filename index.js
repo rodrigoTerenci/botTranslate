@@ -12,18 +12,30 @@ async function robo() {
   // const linguaBase = readlineSync.question('Informe uma lingua base: ') || 'português';
   // const linguaFinal = readlineSync.question('Informe uma lingua desejada:') || 'inglês';
   // const valor = readlineSync.question('Informe uma frase: ') || 'vadia'
-  const qualquerUrl = 'https://e2.fiqueaquiimoveis.com.br/admin/leads' //`https://www.google.com/search?q=tradutor+${linguaBase}+para+${linguaFinal}&sxsrf=ALeKk014ocPYlaGkEBv7yQ7esnJB-smI7w%3A1627486563237&ei=Y3kBYfbKDYrR1sQP24mY4AI&oq=tradutor&gs_lcp=Cgdnd3Mtd2l6EAMYATIHCCMQsAMQJzIHCAAQRxCwAzIHCAAQRxCwAzIHCAAQRxCwAzIHCAAQRxCwAzIHCAAQRxCwAzIHCAAQRxCwAzIHCAAQRxCwAzIHCAAQRxCwAzIHCAAQsAMQQ0oECEEYAFAAWABgxRloAXACeACAAYQBiAGEAZIBAzAuMZgBAKoBB2d3cy13aXrIAQrAAQE&sclient=gws-wiz`;
+  const qualquerUrl = 'https://e2.fiqueaquiimoveis.com.br/admin/leads/switch_kanban/1' 
   await page.goto(qualquerUrl)
+  
+  // const resultado = await page.evaluate(() => {
+  //   document.getElementById('email').value = 'terenci@fiqueaquiimoveis.com.br'
+  //   document.getElementById('password').value = 'Fique12345*'
+  
+  // });
+
+  // maybe its work to
+  //  await page.type("input[type=text]", "username");
+  // await page.type("input[type=password]", "password");
+  // await page.click("button[type=submit]");
+
+  await page.type('#email', 'terenci@fiqueaquiimoveis.com.br');
+  await page.type('#password', 'Fique12345*');
+  await Promise.all(
+    [
+      page.click('button'),
+      page.waitForNavigation()
+    ]
+  )
+
   await page.screenshot({path: 'example.png'});
-  await browser.close()
-
-
-
-const resultado = await page.evaluate((valor) => {
-  document.getElementById('tw-source-text-ta').value = valor
-  return document.getElementById('tw-target-text').textContent
-});
-  console.log(resultado)
   await browser.close();
 
 }
